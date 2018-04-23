@@ -1,76 +1,47 @@
-//
-// Created by ori on 4/22/18.
-//
-
-#ifndef EX4_CIRCULARINT_HPP
-#define EX4_CIRCULARINT_HPP
-
-#endif //EX4_CIRCULARINT_HPP
 #include <iostream>
 using namespace std;
 
-class CircularInt {
+class CircularInt{
 private:
-    int lowlimit, highlimit;
-    int value;
+  int value;
+  int lowLimit;
+  int highLimit;
+
 public:
-    CircularInt(int x, int y);
-    CircularInt& operator = (int num);
+//Constractor and Destractor
+  CircularInt (int x, int y);
+  ~CircularInt();
 
-    CircularInt& operator += (int num);
+//Methods
 
-    CircularInt& operator += (CircularInt ci);
+friend std::ostream& operator<<(std::ostream& o, CircularInt const& ci);
 
-    CircularInt operator + (int num);
+CircularInt operator + (int num);
 
-    CircularInt operator + (CircularInt ci);
+CircularInt operator + (CircularInt const ci);
 
-    CircularInt& operator -= (int num);
+CircularInt& operator += (int num);
 
-    CircularInt& operator -= (CircularInt ci);
+CircularInt& operator += (CircularInt const& ci);
 
-    CircularInt operator - (int num);
+CircularInt operator - (int num);
 
-    CircularInt operator - (CircularInt& ci);
+CircularInt operator - (CircularInt const ci);
 
-    friend CircularInt& operator-(int num, CircularInt& ci);
+CircularInt& operator -= (int num);
 
-    CircularInt operator - ();
+CircularInt& operator -= (CircularInt const ci);
 
-    CircularInt& operator *= (int num);
+CircularInt& operator *= (int num);
 
-    CircularInt& operator *= (CircularInt ci);
+CircularInt& operator *= (CircularInt const ci);
 
-    CircularInt operator * (int num);
+CircularInt& operator ++ (int);
 
-    CircularInt operator * (CircularInt ci);
+CircularInt operator - ();
 
-    CircularInt& operator ++ ();
+CircularInt operator / (int num);
 
-    CircularInt& operator ++ (int num);
-
-    CircularInt& operator -- ();
-
-    CircularInt& operator / (int num);
-
-    friend ostream& operator << (ostream& os, CircularInt ci);
-
-  /*  CircularInt operator ++ (CircularInt ci) {
-        CircularInt result(ci.lowlimit, ci.highlimit);
-        result.value =ci.value+1;
-        if(result.value>ci.highlimit)
-            result.value=ci.lowlimit;
-        return result;
-    }
-
-    CircularInt operator -- (CircularInt ci) {
-        CircularInt result(ci.lowlimit, ci.highlimit);
-        result.value =ci.value-1;
-        if(result.value<ci.lowlimit)
-            result.value=ci.highlimit;
-        return result;
-    }
-*/
-
+friend CircularInt operator - (int num, const CircularInt& ci);
 
 };
