@@ -137,6 +137,14 @@ CircularInt& CircularInt::operator ++ (int){
 	return *this;
 }
 
+CircularInt& CircularInt::operator -- (int){
+	value--;
+	while(value<lowLimit){
+		value=value+(highLimit-lowLimit+1);
+	}
+	return *this;
+}
+
 CircularInt CircularInt::operator - (){
 	CircularInt result(lowLimit,highLimit);
 	result.value=-value;
@@ -161,6 +169,43 @@ CircularInt operator - (int num, const CircularInt& ci){
 	}
 
 	return result;
+}
+
+CircularInt CircularInt::operator ^ (int num){
+	CircularInt result(lowLimit,highLimit);
+	result.value=value^num;
+	while(result.value<lowLimit){
+		result.value=result.value+(highLimit-lowLimit+1);
+	}
+	while(result.value>highLimit){
+		result.value=result.value-(highLimit-lowLimit+1);
+	}
+	return result;
+}
+
+CircularInt CircularInt::operator ^ (CircularInt ci){
+	CircularInt result(lowLimit,highLimit);
+	result.value=value^ci.value;
+	while(result.value<lowLimit){
+		result.value=result.value+(highLimit-lowLimit+1);
+	}
+	while(result.value>highLimit){
+		result.value=result.value-(highLimit-lowLimit+1);
+	}
+	return result;
+}
+
+bool CircularInt::operator ==(int num){
+	CircularInt result(lowLimit,highLimit);
+	result.value=value^num;
+	while(result.value<lowLimit){
+		result.value=result.value+(highLimit-lowLimit+1);
+	}
+	while(result.value>highLimit){
+		result.value=result.value-(highLimit-lowLimit+1);
+	}
+	if (result==0) return true;
+	return false;
 }
 
 CircularInt CircularInt::operator / (int num){

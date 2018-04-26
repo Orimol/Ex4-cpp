@@ -38,9 +38,17 @@ CircularInt& operator *= (CircularInt const ci);
 
 CircularInt& operator ++ (int);
 
+CircularInt& operator --(int);
+
 CircularInt operator - ();
 
 CircularInt operator / (int num);
+
+CircularInt operator ^(int num);
+
+CircularInt operator ^(CircularInt const ci);
+
+bool operator ==(int num);
 
 friend CircularInt operator - (int num, const CircularInt& ci);
 
