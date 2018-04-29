@@ -60,6 +60,12 @@ CircularInt operator / (int num);
 
 CircularInt operator / (CircularInt ci);
 
+friend CircularInt operator / (int num, const CircularInt& ci);
+
+CircularInt& operator /= (int num);
+
+CircularInt& operator /= (const CircularInt& ci);
+
 CircularInt operator ^(int num);
 
 CircularInt operator ^(CircularInt const ci);

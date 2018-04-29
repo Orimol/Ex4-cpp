@@ -189,6 +189,34 @@ CircularInt CircularInt::operator/(const CircularInt other){
   throw std::invalid_argument( "There is no such a number\n" );
 }
 
+CircularInt operator/(int num, const CircularInt& ci){
+  CircularInt tmp = ci;
+  if( num%ci.value == 0 ){
+    int ans = num/ci.value;
+    tmp.value = tmp.modulo(ans);
+    return tmp;
+  }
+  throw std::invalid_argument( "There is no such a number\n" );
+}
+
+CircularInt& CircularInt::operator /= (int num){
+  if(value%num == 0){
+    int ans = value/num;
+    value = modulo(ans);
+    return *this;
+  }
+  throw std::invalid_argument( "There is no such a number\n" );
+}
+
+CircularInt& CircularInt::operator /= (const CircularInt& ci){
+  if(value%ci.value == 0){
+    int ans = value/ci.value;
+    value = modulo(ans);
+    return *this;
+  }
+  throw std::invalid_argument( "There is no such a number\n" );
+}
+
 bool CircularInt::operator!=(int num){
   if(value!=num){return true;}
   return false;
