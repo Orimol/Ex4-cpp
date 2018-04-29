@@ -255,6 +255,81 @@ bool operator < (CircularInt ci, int num){
     else return false;
 }
 
+bool operator == (int num, CircularInt ci){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num==ci.value) return true;
+    else return false;
+}
+
+bool operator >= (int num, CircularInt ci){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num>=ci.value) return true;
+    else return false;
+}
+
+bool operator <= (int num, CircularInt ci){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<=ci.value) return true;
+    else return false;
+}
+
+bool operator > (int num, CircularInt ci){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num>ci.value) return true;
+    else return false;
+}
+
+bool operator < (int num, CircularInt ci){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.value) return true;
+    else return false;
+}
+
 /*  CircularInt operator ++ (CircularInt ci) {
       CircularInt result(ci.lowlimit, ci.highlimit);
       result.value =ci.value+1;
