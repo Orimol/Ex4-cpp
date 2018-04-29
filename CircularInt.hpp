@@ -3,107 +3,109 @@ using namespace std;
 
 class CircularInt{
 private:
-  int value;
-  int lowLimit;
-  int highLimit;
+    int value;
+    int lowLimit;
+    int highLimit;
 
 public:
 //Constractor and Destractor
-  CircularInt (int x, int y);
-  ~CircularInt();
+    CircularInt (int x, int y);
+    ~CircularInt();
 
 //Methods
 
-int modulo(int x);
+    int modulo(int x);
 
-friend std::ostream& operator<<(std::ostream& o, CircularInt const& ci);
+    friend std::ostream& operator<<(std::ostream& o, CircularInt const& ci);
 
-friend std::istream& operator>>(std::istream& o, CircularInt &ci);
+    friend std::istream& operator>>(std::istream& o, CircularInt &ci);
 
-CircularInt& operator = (int num);
+    CircularInt operator * (CircularInt const ci);
 
-CircularInt operator + (int num);
+    CircularInt& operator = (int num);
 
-CircularInt operator + (CircularInt const ci);
+    CircularInt operator + (int num);
 
-friend CircularInt operator + (int num, const CircularInt& ci);
+    CircularInt operator + (CircularInt const ci);
 
-CircularInt operator - (int num);
+    friend CircularInt operator + (int num, const CircularInt& ci);
 
-CircularInt operator - (CircularInt const ci);
+    CircularInt operator - (int num);
 
-friend CircularInt operator - (int num, const CircularInt& ci);
+    CircularInt operator - (CircularInt const ci);
 
-CircularInt operator - ();
+    friend CircularInt operator - (int num, const CircularInt& ci);
 
-CircularInt& operator += (int num);
+    CircularInt operator - ();
 
-CircularInt& operator += (CircularInt const& ci);
+    CircularInt& operator += (int num);
 
-CircularInt& operator -= (int num);
+    CircularInt& operator += (CircularInt const& ci);
 
-CircularInt& operator -= (CircularInt const ci);
+    CircularInt& operator -= (int num);
 
-CircularInt& operator *= (int num);
+    CircularInt& operator -= (CircularInt const ci);
 
-CircularInt& operator *= (CircularInt const ci);
+    CircularInt& operator *= (int num);
 
-const CircularInt operator ++ (int);
+    CircularInt& operator *= (CircularInt const ci);
 
-CircularInt& operator++();
+    const CircularInt operator ++ (int);
 
-const CircularInt operator --(int);
+    CircularInt& operator++();
 
-CircularInt& operator--();
+    const CircularInt operator --(int);
 
-CircularInt operator / (int num);
+    CircularInt& operator--();
 
-CircularInt operator / (CircularInt ci);
+    CircularInt operator / (int num);
 
-friend CircularInt operator / (int num, const CircularInt& ci);
+    CircularInt operator / (CircularInt ci);
 
-CircularInt& operator /= (int num);
+    friend CircularInt operator / (int num, const CircularInt& ci);
 
-CircularInt& operator /= (const CircularInt& ci);
+    CircularInt& operator /= (int num);
 
-CircularInt operator ^(int num);
+    CircularInt& operator /= (const CircularInt& ci);
 
-CircularInt operator ^(CircularInt const ci);
+    CircularInt operator ^(int num);
 
-bool operator ==(int num);
+    CircularInt operator ^(CircularInt const ci);
 
-bool operator ==(CircularInt const ci);
+    bool operator ==(int num);
 
-friend bool operator == (int num, const CircularInt& ci);
+    bool operator ==(CircularInt const ci);
 
-bool operator != (int num);
+    friend bool operator == (int num, const CircularInt& ci);
 
-bool operator != (const CircularInt& other);
+    bool operator != (int num);
 
-friend bool operator!=(int num, const CircularInt& ci);
+    bool operator != (const CircularInt& other);
 
-bool operator < (int num);
+    friend bool operator!=(int num, const CircularInt& ci);
 
-bool operator < (const CircularInt& other);
+    bool operator < (int num);
 
-friend bool operator < (int num, const CircularInt& ci);
+    bool operator < (const CircularInt& other);
 
-bool operator > (int num);
+    friend bool operator < (int num, const CircularInt& ci);
 
-bool operator > (const CircularInt& other);
+    bool operator > (int num);
 
-friend bool operator > (int num, const CircularInt& ci);
+    bool operator > (const CircularInt& other);
 
-bool operator <= (int num);
+    friend bool operator > (int num, const CircularInt& ci);
 
-bool operator <= (const CircularInt& other);
+    bool operator <= (int num);
 
-friend bool operator <= (int num, const CircularInt& ci);
+    bool operator <= (const CircularInt& other);
 
-bool operator >= (int num);
+    friend bool operator <= (int num, const CircularInt& ci);
 
-bool operator >= (const CircularInt& other);
+    bool operator >= (int num);
 
-friend bool operator >= (int num, const CircularInt& ci);
+    bool operator >= (const CircularInt& other);
+
+    friend bool operator >= (int num, const CircularInt& ci);
 
 };
