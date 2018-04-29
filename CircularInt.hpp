@@ -75,6 +75,7 @@ public:
 
     friend bool operator < (int num, CircularInt ci);
 
+    friend bool operator == (CircularInt ci, CircularInt ci_);
     /*  CircularInt operator ++ (CircularInt ci) {
           CircularInt result(ci.lowlimit, ci.highlimit);
           result.value =ci.value+1;

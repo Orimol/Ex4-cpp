@@ -330,6 +330,11 @@ bool operator < (int num, CircularInt ci){
     else return false;
 }
 
+bool operator == (CircularInt ci, CircularInt ci_){
+    if (ci.value==ci_.value) return true;
+    else return false;
+}
+
 /*  CircularInt operator ++ (CircularInt ci) {
       CircularInt result(ci.lowlimit, ci.highlimit);
       result.value =ci.value+1;
