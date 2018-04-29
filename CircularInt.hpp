@@ -22,6 +22,10 @@ public:
 
     CircularInt operator * (CircularInt const ci);
 
+    CircularInt operator * (int num);
+
+    friend CircularInt operator * (int num, CircularInt& ci);
+
     CircularInt& operator = (int num);
 
     CircularInt operator + (int num);

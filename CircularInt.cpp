@@ -40,6 +40,12 @@ CircularInt CircularInt::operator * (CircularInt const ci){
     return result;
 }
 
+CircularInt  CircularInt:: operator * (int num){
+    CircularInt result(lowLimit,highLimit);
+    result.value=result.modulo(value*num);
+    return result;
+}
+
 
 //Equals operator
 CircularInt& CircularInt::operator = (int num){
