@@ -14,6 +14,8 @@ public:
 
 //Methods
 
+int modulo(int x);
+
 friend std::ostream& operator<<(std::ostream& o, CircularInt const& ci);
 
 CircularInt operator + (int num);
@@ -47,6 +49,8 @@ CircularInt& operator ++ (int);
 CircularInt& operator --(int);
 
 CircularInt operator / (int num);
+
+CircularInt operator / (CircularInt ci);
 
 CircularInt operator ^(int num);
 
