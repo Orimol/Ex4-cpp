@@ -1,170 +1,274 @@
+//
+// Created by ori on 4/16/18.
+//
+
+#include <iostream>
 #include "CircularInt.hpp"
+using namespace std;
 
 
-CircularInt::CircularInt (int x, int y){
-	if(x<=y){
-	lowLimit=x;
-	highLimit=y;
-	value=lowLimit;
-	}
-	else cout<<"The highLimit must be bigger than lowLimit"<<endl;
+CircularInt::CircularInt(int x, int y){
+    if (x<=y){
+        lowlimit=x;
+        highlimit=y;
+        value=x;
+    }
+    else cout<<"low limit higher than high limit";
+}
+CircularInt& CircularInt:: operator = (int num){
+    value=num;
+    if (value>highlimit) {
+        while (value > highlimit) {
+            value -= (highlimit - lowlimit) + 1;
+        }
+    }
+    else{
+        while (value<lowlimit){
+            value+=(highlimit-lowlimit)+1;
+        }
+    }
+    return *this;
 }
 
-CircularInt::~CircularInt(){};
+CircularInt& CircularInt:: operator += (int num){
+    value+=num;
+    while (value>highlimit){
+        value-=(highlimit-lowlimit)+1;
+    }
+    return *this;
+}
 
-int CircularInt::modulo(int x){
-	while(x>highLimit){
-		x=x-(highLimit-lowLimit+1);
-	}
-	while(x<lowLimit){
-		x=x+(highLimit-lowLimit+1);
-	}
-	return x;
+CircularInt& CircularInt:: operator += (CircularInt ci){
+    value+=ci.value;
+    while (value>highlimit){
+        value-=(highlimit-lowlimit)+1;
+    }
+    return *this;
+}
+
+CircularInt CircularInt:: operator + (int num){
+    CircularInt result(lowlimit,highlimit);
+    result.value=value+num;
+    while (result.value>highlimit){
+        result.value-=(highlimit-lowlimit)+1;
+    }
+    return result;
+}
+
+CircularInt CircularInt:: operator + (CircularInt ci){
+    CircularInt result(lowlimit,highlimit);
+    result.value=value+ci.value;
+    while (result.value>highlimit){
+        result.value-=(highlimit-lowlimit)+1;
+    }
+    return result;
+}
+
+CircularInt& CircularInt:: operator -= (int num){
+    value-=num;
+    while (value<lowlimit){
+        value+=(highlimit-lowlimit)+1;
+    }
+    return *this;
+}
+
+CircularInt& CircularInt:: operator -= (CircularInt ci){
+    value-=ci.value;
+    while (value<lowlimit){
+        value+=(highlimit-lowlimit)+1;
+    }
+    return *this;
+}
+
+CircularInt CircularInt:: operator - (int num){
+    CircularInt result(lowlimit,highlimit);
+    result.value=value-num;
+    while (result.value<lowlimit){
+        result.value+=(highlimit-lowlimit)+1;
+    }
+    return result;
+}
+
+CircularInt CircularInt:: operator - (CircularInt& ci){
+    CircularInt result(lowlimit,highlimit);
+    result.value=value-ci.value;
+    while (result.value<lowlimit){
+        result.value+=(highlimit-lowlimit)+1;
+    }
+    return result;
+}
+
+CircularInt& operator-(int num, CircularInt& ci){
+    ci.value=num-ci.value;
+    while (ci.value<ci.lowlimit){
+        ci.value+=(ci.highlimit-ci.lowlimit)+1;
+    }
+    return ci;
+}
+
+CircularInt CircularInt:: operator - (){
+    CircularInt result(lowlimit,highlimit);
+    result.value=0-this->value;
+    while (result.value<lowlimit){
+        result.value+=(highlimit-lowlimit)+1;
+    }
+    return result;
+}
+
+CircularInt& CircularInt:: operator *= (int num){
+    value*=num;
+    while (value>highlimit){
+        value-=(highlimit-lowlimit)+1;
+    }
+    return *this;
+}
+
+CircularInt& CircularInt:: operator *= (CircularInt ci){
+    value*=ci.value;
+    while (value>highlimit){
+        value-=(highlimit-lowlimit)+1;
+    }
+    return *this;
+}
+
+CircularInt CircularInt:: operator * (int num){
+    CircularInt result(lowlimit,highlimit);
+    result.value=value*num;
+    while (result.value>highlimit){
+        result.value-=(highlimit-lowlimit)+1;
+    }
+    return result;
+}
+
+CircularInt CircularInt:: operator * (CircularInt ci) {
+    CircularInt result(lowlimit, highlimit);
+    result.value = value * ci.value;
+    while (result.value > highlimit) {
+        result.value -= (highlimit - lowlimit) + 1;
+    }
+    return result;
 }
 
 
-std::ostream& operator<<(std::ostream& o, CircularInt const& ci){
-	return o<<ci.value;
+CircularInt operator ++ (CircularInt ci) {
+    ci.value++;
+    if(ci.value>ci.highlimit)
+        ci.value=ci.lowlimit;
+    return ci;
 }
 
-std::istream& operator>> (std::istream& o, CircularInt& ci)
-{
-    int num;
-    o >> num;
-		ci.value=ci.modulo(num);
-    return o;
+CircularInt& CircularInt:: operator ++ (int num){
+    this->value++;
+    if(this->value>highlimit) {
+        this->value = lowlimit;
+    }
+    return *this;
 }
 
-CircularInt CircularInt::operator + (int num){
-	CircularInt result(lowLimit,highLimit);
-	result.value=result.modulo(value+num);
-	return result;
+CircularInt& CircularInt:: operator -- () {
+    this->value--;
+    if(this->value<lowlimit)
+        this->value=highlimit;
+    return *this;
 }
 
-CircularInt CircularInt::operator + (CircularInt const ci){
-	CircularInt result(lowLimit,highLimit);
-	result.value=result.modulo(value+ci.value);
-	return result;
+CircularInt& CircularInt:: operator / (int num){
+
 }
 
-CircularInt CircularInt::operator - (int num){
-	CircularInt result(lowLimit,highLimit);
-	result.value=result.modulo(value-num);
-	return result;
+ostream& operator << (ostream& os , CircularInt ci){
+    os << ci.value ;
 }
 
-CircularInt CircularInt::operator - (CircularInt ci){
-	CircularInt result(lowLimit,highLimit);
-	result.value=result.modulo(value-ci.value);
-	return result;
-}
-//---------------------------------------------------------------------------------------
-CircularInt& CircularInt::operator += (int num){
-	value=modulo(value+num);
-	return *this;
-}
-
-CircularInt& CircularInt::operator += (CircularInt const& ci){
-	value=modulo(value+ci.value);
-	return *this;
-}
-
-CircularInt& CircularInt::operator -= (const int num){
-	value=modulo(value-num);
-	return *this;
+bool operator == (CircularInt ci, int num){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (ci.value==num) return true;
+    else return false;
 }
 
-
-CircularInt& CircularInt::operator -= (const CircularInt ci){
-	value=modulo(value-ci.value);
-	return *this;
+bool operator >= (CircularInt ci, int num){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (ci.value>=num) return true;
+    else return false;
 }
 
-CircularInt& CircularInt::operator *= (const int num){
-	value=modulo(value*num);
-	return *this;
+bool operator <= (CircularInt ci, int num){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (ci.value<=num) return true;
+    else return false;
 }
 
-CircularInt& CircularInt::operator *= (const CircularInt ci){
-	value=modulo(value*ci.value);
-	return *this;
+bool operator > (CircularInt ci, int num){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (ci.value>num) return true;
+    else return false;
 }
 
-CircularInt& CircularInt::operator ++ (int){
-	value=modulo(value++);
-	return *this;
+bool operator < (CircularInt ci, int num){
+    if (num>ci.highlimit){
+        while (num>ci.highlimit){
+            num-=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (num<ci.lowlimit) {
+        while (num < ci.lowlimit) {
+            num+=(ci.highlimit-ci.lowlimit)+1;
+        }
+    }
+    if (ci.value<num) return true;
+    else return false;
 }
 
-CircularInt& CircularInt::operator -- (int){
-	value=modulo(value--);
-	return *this;
-}
-
-CircularInt CircularInt::operator - (){
-	CircularInt result(lowLimit,highLimit);
-	result.value=modulo(-value);
-	return result;
-}
-
-CircularInt operator - (int num, const CircularInt& ci){
-	CircularInt result(ci.lowLimit,ci.highLimit);
-	result.value=modulo(num-ci.value);
-	return result;
-}
-
-CircularInt operator + (int num, const CircularInt& ci){
-	CircularInt result(ci.lowLimit,ci.highLimit);
-	result.value=modulo(num+ci.value);
-
-	return result;
-}
-
-CircularInt CircularInt::operator ^ (int num){
-	CircularInt result(lowLimit,highLimit);
-	result.value=modulo(value^num);
-	return result;
-}
-
-CircularInt CircularInt::operator ^ (const CircularInt ci){
-	CircularInt result(lowLimit,highLimit);
-	result.value=modulo(value^ci.value);
-	return result;
-}
-
-bool CircularInt::operator ==(int num){
-	CircularInt result(lowLimit,highLimit);
-	if(value==modulo(num)) return true;
-	return false;
-}
-
-bool CircularInt::operator ==(const CircularInt ci){
-	if(value==ci.value) return true;
-	return false;
-}
-
-bool operator == (int num, const CircularInt& ci){
-	if(modulo(num)==ci.value) return true;
-	return false;
-}
-
-CircularInt CircularInt::operator/(int a){
-  CircularInt tmp(min,max);
-  if( hour%a == 0 ){
-    int ans = hour/a;
-    tmp.hour = modulo(ans);
-    return tmp;
+/*  CircularInt operator ++ (CircularInt ci) {
+      CircularInt result(ci.lowlimit, ci.highlimit);
+      result.value =ci.value+1;
+      if(result.value>ci.highlimit)
+          result.value=ci.lowlimit;
+      return result;
   }
-  throw std::invalid_argument( "There is no such a number\n" );
-}
-CircularInt CircularInt::operator/(const CircularInt other){
-  CircularInt tmp(min,max);
-  if( hour%other.hour == 0 ){
-    int ans = hour/other.hour;
-    tmp.hour = modulo(ans);
-    return tmp;
+
+  CircularInt operator -- (CircularInt ci) {
+      CircularInt result(ci.lowlimit, ci.highlimit);
+      result.value =ci.value-1;
+      if(result.value<ci.lowlimit)
+          result.value=ci.highlimit;
+      return result;
   }
-  throw std::invalid_argument( "There is no such a number\n" );
-}
-	return result;
-}
-;
+*/
+
