@@ -1,97 +1,103 @@
-//
-// Created by ori on 4/22/18.
-//
-
-#ifndef EX4_CIRCULARINT_HPP
-#define EX4_CIRCULARINT_HPP
-
-#endif //EX4_CIRCULARINT_HPP
 #include <iostream>
 using namespace std;
 
-class CircularInt {
+class CircularInt{
 private:
-    int lowlimit, highlimit;
-    int value;
+  int value;
+  int lowLimit;
+  int highLimit;
+
 public:
-    CircularInt(int x, int y);
-    CircularInt& operator = (int num);
+//Constractor and Destractor
+  CircularInt (int x, int y);
+  ~CircularInt();
 
-    CircularInt& operator += (int num);
+//Methods
 
-    CircularInt& operator += (CircularInt ci);
+int modulo(int x);
 
-    CircularInt operator + (int num);
+friend std::ostream& operator<<(std::ostream& o, CircularInt const& ci);
 
-    CircularInt operator + (CircularInt ci);
+friend std::istream& operator>>(std::istream& o, CircularInt &ci);
 
-    CircularInt& operator -= (int num);
+CircularInt& operator = (int num);
 
-    CircularInt& operator -= (CircularInt ci);
+CircularInt operator + (int num);
 
-    CircularInt operator - (int num);
+CircularInt operator + (CircularInt const ci);
 
-    CircularInt operator - (CircularInt& ci);
+friend CircularInt operator + (int num, const CircularInt& ci);
 
-    friend CircularInt& operator-(int num, CircularInt& ci);
+CircularInt operator - (int num);
 
-    CircularInt operator - ();
+CircularInt operator - (CircularInt const ci);
 
-    CircularInt& operator *= (int num);
+friend CircularInt operator - (int num, const CircularInt& ci);
 
-    CircularInt& operator *= (CircularInt ci);
+CircularInt operator - ();
 
-    CircularInt operator * (int num);
+CircularInt& operator += (int num);
 
-    CircularInt operator * (CircularInt ci);
+CircularInt& operator += (CircularInt const& ci);
 
-    friend CircularInt operator ++ (CircularInt ci);
+CircularInt& operator -= (int num);
 
-    CircularInt& operator ++ (int num);
+CircularInt& operator -= (CircularInt const ci);
 
-    CircularInt& operator -- ();
+CircularInt& operator *= (int num);
 
-    CircularInt& operator / (int num);
+CircularInt& operator *= (CircularInt const ci);
 
-    friend ostream& operator << (ostream& os, CircularInt ci);
+const CircularInt operator ++ (int);
 
-    friend bool operator == (CircularInt ci, int num);
+CircularInt& operator++();
 
-    friend bool operator >= (CircularInt ci, int num);
+const CircularInt operator --(int);
 
-    friend bool operator <= (CircularInt ci, int num);
+CircularInt& operator--();
 
-    friend bool operator > (CircularInt ci, int num);
+CircularInt operator / (int num);
 
-    friend bool operator < (CircularInt ci, int num);
+CircularInt operator / (CircularInt ci);
 
-    friend bool operator == (int num, CircularInt ci);
+CircularInt operator ^(int num);
 
-    friend bool operator >= (int num, CircularInt ci);
+CircularInt operator ^(CircularInt const ci);
 
-    friend bool operator <= (int num, CircularInt ci);
+bool operator ==(int num);
 
-    friend bool operator > (int num, CircularInt ci);
+bool operator ==(CircularInt const ci);
 
-    friend bool operator < (int num, CircularInt ci);
+friend bool operator == (int num, const CircularInt& ci);
 
-    friend bool operator == (CircularInt ci, CircularInt ci_);
-    /*  CircularInt operator ++ (CircularInt ci) {
-          CircularInt result(ci.lowlimit, ci.highlimit);
-          result.value =ci.value+1;
-          if(result.value>ci.highlimit)
-              result.value=ci.lowlimit;
-          return result;
-      }
+bool operator != (int num);
 
-      CircularInt operator -- (CircularInt ci) {
-          CircularInt result(ci.lowlimit, ci.highlimit);
-          result.value =ci.value-1;
-          if(result.value<ci.lowlimit)
-              result.value=ci.highlimit;
-          return result;
-      }
-  */
+bool operator != (const CircularInt& other);
 
+friend bool operator!=(int num, const CircularInt& ci);
+
+bool operator < (int num);
+
+bool operator < (const CircularInt& other);
+
+friend bool operator < (int num, const CircularInt& ci);
+
+bool operator > (int num);
+
+bool operator > (const CircularInt& other);
+
+friend bool operator > (int num, const CircularInt& ci);
+
+bool operator <= (int num);
+
+bool operator <= (const CircularInt& other);
+
+friend bool operator <= (int num, const CircularInt& ci);
+
+bool operator >= (int num);
+
+bool operator >= (const CircularInt& other);
+
+friend bool operator >= (int num, const CircularInt& ci);
 
 };
